@@ -1,0 +1,105 @@
+{
+  "id": "transformer",
+  "number": "08",
+  "field": "Power equipment",
+  "title": "Transformer thermal loading and ageing",
+  "card_detail": "IEC 60076-7 hot-spot model, EV hosting capacity and insulation ageing.",
+  "context": "A 630 kVA 20/0.4 kV ONAN secondary-substation transformer feeding 180 households with rooftop PV and a growing number of electric vehicles. Hot-spot and top-oil temperatures follow the IEC 60076-7 loading-guide thermal model, insulation ageing follows the guide's relative-ageing law, and every case is checked against the normal cyclic loading limits. Thermal parameters are typical ONAN values and the load, PV, EV and weather profiles are synthetic study assumptions.",
+  "stamp": "Python · IEC 60076-7",
+  "statement": {
+    "tool": "Python implementation of the IEC 60076-7 thermal model (difference equations) and ageing law",
+    "built": "Steady-state and dynamic hot-spot model, EV, PV and battery scenarios, and a 0-200 EV hosting-capacity sweep",
+    "result": "Shifting EV charging to the night cut insulation ageing on a 160-EV winter day by 98.6 %"
+  },
+  "flow_label": "Profiles to thermal model to ageing to limit check",
+  "flow": [
+    [
+      "Profiles",
+      "180 homes, PV, EVs",
+      "winter and summer days"
+    ],
+    [
+      "Thermal",
+      "IEC 60076-7 model",
+      "top oil and hot spot, 1 min steps"
+    ],
+    [
+      "Ageing",
+      "Relative ageing law",
+      "doubles every 6 K above 98 °C"
+    ],
+    [
+      "Check",
+      "Normal cyclic limits",
+      "120 °C, 105 °C, 1.5 pu"
+    ]
+  ],
+  "method_note": "In winter the 1.5 pu current limit binds before the hot-spot limit: the cold ambient keeps the hot spot at 109 °C even at 1.72 pu. The battery therefore adds 30 EVs of capacity, while shifted charging removes the evening peak altogether.",
+  "plots": [
+    {
+      "file": "winter_day.svg",
+      "label": "Winter day",
+      "alt": "Load and hot-spot temperature over a winter day for three charging strategies",
+      "caption": "Generated output: 160 EVs, winter day"
+    },
+    {
+      "file": "hosting_capacity.svg",
+      "label": "Hosting capacity",
+      "alt": "Daily peak hot spot against number of EVs for three charging strategies",
+      "caption": "Generated output: EV hosting capacity sweep"
+    },
+    {
+      "file": "ageing.svg",
+      "label": "Ageing",
+      "alt": "Life consumed per winter day against number of EVs on a log scale",
+      "caption": "Generated output: insulation ageing per day"
+    }
+  ],
+  "spec": [
+    [
+      "Transformer",
+      "630 kVA, 20/0.4 kV, ONAN, non-upgraded paper"
+    ],
+    [
+      "Model",
+      "IEC 60076-7 difference equations, 1-minute steps"
+    ],
+    [
+      "Scenarios",
+      "Uncontrolled, shifted charging, battery 250 kWh / 125 kW"
+    ]
+  ],
+  "results_head": [
+    "Check",
+    "Result"
+  ],
+  "results": [
+    [
+      "Rated load at 20 °C",
+      "75 °C top oil, 98 °C hot spot"
+    ],
+    [
+      "Winter hosting capacity",
+      "120 EVs uncontrolled, 150 with battery, 200+ shifted"
+    ],
+    [
+      "Summer hosting capacity",
+      "160 EVs uncontrolled, 200+ with battery or shifted"
+    ],
+    [
+      "160 EVs, winter, uncontrolled",
+      "1.72 pu peak, 108.8 °C hot spot, 0.135 days of life"
+    ],
+    [
+      "160 EVs, winter, shifted",
+      "1.10 pu peak, 65.7 °C hot spot, 0.0019 days of life"
+    ]
+  ],
+  "decisions": [
+    "Simulate three identical days and keep the last, so results do not depend on the starting temperature.",
+    "Count reverse PV flow as transformer loading, since the windings heat in either direction.",
+    "Report which limit binds, not only whether a case passes, because the remedy differs.",
+    "Keep thermal parameters as stated assumptions until fitted to a real heat-run report."
+  ],
+  "verification": "11 tests: rated-load temperatures, dynamic model settling on the steady state, oil time constant, ageing law at 92, 98 and 104 °C, upgraded-paper reference, one day of life at 98 °C, EV energy conservation, battery limits and the hosting-capacity boundary."
+}

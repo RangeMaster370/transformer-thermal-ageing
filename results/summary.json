@@ -1,0 +1,82 @@
+{
+  "provenance": "Python implementation of the IEC 60076-7 thermal model with typical ONAN distribution-transformer parameters and synthetic load, PV, EV and ambient profiles (study assumptions).",
+  "transformer": {
+    "rating_kva": 630.0,
+    "x": 0.8,
+    "y": 1.6,
+    "R": 5.0,
+    "d_theta_or": 55.0,
+    "hgr": 23.0,
+    "tau_o": 180.0,
+    "tau_w": 4.0
+  },
+  "limits_normal_cyclic": {
+    "hot_spot_c": 120.0,
+    "top_oil_c": 105.0,
+    "current_pu": 1.5
+  },
+  "checks": {
+    "steady_state_rated_20c_hot_spot_c": 98.0,
+    "steady_state_rated_20c_top_oil_c": 75.0,
+    "dynamic_settles_to_c": 97.99999998845306,
+    "ageing_rate_at_98c": 1.0,
+    "ageing_rate_at_104c": 2.0
+  },
+  "hosting_capacity_ev": {
+    "winter": {
+      "uncontrolled": {
+        "ev": 120,
+        "limited_by": "current"
+      },
+      "shifted charging": {
+        "ev": 200,
+        "limited_by": "sweep end"
+      },
+      "uncontrolled + battery": {
+        "ev": 150,
+        "limited_by": "current"
+      }
+    },
+    "summer": {
+      "uncontrolled": {
+        "ev": 160,
+        "limited_by": "current"
+      },
+      "shifted charging": {
+        "ev": 200,
+        "limited_by": "sweep end"
+      },
+      "uncontrolled + battery": {
+        "ev": 200,
+        "limited_by": "sweep end"
+      }
+    }
+  },
+  "case": {
+    "n_ev": 160,
+    "season": "winter",
+    "uncontrolled": {
+      "K_max": 1.722,
+      "hot_spot_max_c": 108.8,
+      "top_oil_max_c": 66.0,
+      "loss_of_life_days": 0.135,
+      "within_normal_cyclic": false
+    },
+    "shifted charging": {
+      "K_max": 1.1,
+      "hot_spot_max_c": 65.7,
+      "top_oil_max_c": 42.4,
+      "loss_of_life_days": 0.0019,
+      "within_normal_cyclic": true
+    },
+    "uncontrolled + battery": {
+      "K_max": 1.514,
+      "hot_spot_max_c": 95.8,
+      "top_oil_max_c": 58.3,
+      "loss_of_life_days": 0.0277,
+      "within_normal_cyclic": false
+    },
+    "ageing_reduction_shifted_pct": 98.6
+  },
+  "sweep_points": 126
+}

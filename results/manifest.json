@@ -1,0 +1,13 @@
+{
+  "generated_utc": "2026-10-07T17:55:32+00:00",
+  "python": "3.13.16",
+  "results": {
+    "REPORT.md": "3960d89dfd503e757ae9f857e2fd0e66879947da874725c7f3a8d8038f963eb6",
+    "ageing.svg": "74193c6a90b4bba96d096d6bd50cced1cf2b472dd363bda35ae972bbc62d68ad",
+    "hosting_capacity.svg": "6920b4dc2d296232b3eae691cfdf8e9cea68de4c4c2c80ed684f64118a90860b",
+    "hosting_sweep.csv": "c214be2d7924edc035c4d716f1590e1661c60ac47d535ef14096a113f36454c4",
+    "summary.json": "1c5e02e5c44eafb41d859ea8719005bff27f6cfae777d70213437b44c167edb2",
+    "winter_day.svg": "81c4ed3e5cbc54809fe3d9007cc3aa71b25cab27ac22acce36ccc55488c91fdf",
+    "winter_day_160ev.csv": "6ca8452865347bdf728e7d6bb814427a5ebebcc3eee225e1a3e103540114fbd3"
+  }
+}
